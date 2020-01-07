@@ -1,0 +1,2 @@
+# gateways
+Gateways management API
