@@ -1,5 +1,7 @@
 package com.musala.task.gateways.models.entity;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,6 +25,9 @@ public class GatewayEntity {
     @Pattern(regexp = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$", message = "Ip address should complaint with IPv4 format (eg. 127.0.0.1)")
     @Column(name = "ip_address")
     private String ipAddress;
+    
+	@OneToMany(mappedBy = "gateway", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<DeviceEntity> devices;
     
     public GatewayEntity() {
     	
@@ -64,5 +69,5 @@ public class GatewayEntity {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
-    }
+    }    
 }
